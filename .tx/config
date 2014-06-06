@@ -2,47 +2,47 @@
 host = https://www.transifex.com
 type = XLIFF
 
-[contao.v3_3-news-default]
+[contao.v4_0-news-default]
 source_file = src/languages/en/default.xlf
 source_lang = en
 file_filter = src/languages/<lang>/default.xlf
 
-[contao.v3_3-news-modules]
+[contao.v4_0-news-modules]
 source_file = src/languages/en/modules.xlf
 source_lang = en
 file_filter = src/languages/<lang>/modules.xlf
 
-[contao.v3_3-news-tl_module]
+[contao.v4_0-news-tl_module]
 source_file = src/languages/en/tl_module.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_module.xlf
 
-[contao.v3_3-news-tl_news]
+[contao.v4_0-news-tl_news]
 source_file = src/languages/en/tl_news.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_news.xlf
 
-[contao.v3_3-news-tl_news_archive]
+[contao.v4_0-news-tl_news_archive]
 source_file = src/languages/en/tl_news_archive.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_news_archive.xlf
 
-[contao.v3_3-news-tl_news_comments]
+[contao.v4_0-news-tl_news_comments]
 source_file = src/languages/en/tl_news_comments.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_news_comments.xlf
 
-[contao.v3_3-news-tl_news_feed]
+[contao.v4_0-news-tl_news_feed]
 source_file = src/languages/en/tl_news_feed.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_news_feed.xlf
 
-[contao.v3_3-news-tl_user]
+[contao.v4_0-news-tl_user]
 source_file = src/languages/en/tl_user.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_user.xlf
 
-[contao.v3_3-news-tl_user_group]
+[contao.v4_0-news-tl_user_group]
 source_file = src/languages/en/tl_user_group.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_user_group.xlf
