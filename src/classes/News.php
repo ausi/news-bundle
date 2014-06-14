@@ -10,10 +10,6 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-
-/**
- * Run in a custom namespace, so the class can be replaced
- */
 namespace Contao;
 
 
@@ -25,7 +21,7 @@ namespace Contao;
  * @author     Leo Feyer <https://contao.org>
  * @package    News
  */
-class News extends \Frontend
+class News extends Frontend
 {
 
 	/**
@@ -35,7 +31,7 @@ class News extends \Frontend
 	 */
 	public function generateFeed($intId, $blnIsFeedId=false)
 	{
-		$objFeed = $blnIsFeedId ? \NewsFeedModel::findByPk($intId) : \NewsFeedModel::findByArchive($intId);
+		$objFeed = $blnIsFeedId ? NewsFeedModel::findByPk($intId) : NewsFeedModel::findByArchive($intId);
 
 		if ($objFeed === null)
 		{
@@ -45,7 +41,7 @@ class News extends \Frontend
 		$objFeed->feedName = $objFeed->alias ?: 'news' . $objFeed->id;
 
 		// Delete XML file
-		if (\Input::get('act') == 'delete')
+		if (Input::get('act') == 'delete')
 		{
 			$this->import('Files');
 			$this->Files->delete($objFeed->feedName . '.xml');
@@ -68,7 +64,7 @@ class News extends \Frontend
 		$this->import('Automator');
 		$this->Automator->purgeXmlFiles();
 
-		$objFeed = \NewsFeedModel::findAll();
+		$objFeed = NewsFeedModel::findAll();
 
 		if ($objFeed !== null)
 		{
@@ -96,10 +92,10 @@ class News extends \Frontend
 		}
 
 		$strType = ($arrFeed['format'] == 'atom') ? 'generateAtom' : 'generateRss';
-		$strLink = $arrFeed['feedBase'] ?: \Environment::get('base');
+		$strLink = $arrFeed['feedBase'] ?: Environment::get('base');
 		$strFile = $arrFeed['feedName'];
 
-		$objFeed = new \Feed($strFile);
+		$objFeed = new Feed($strFile);
 		$objFeed->link = $strLink;
 		$objFeed->title = $arrFeed['title'];
 		$objFeed->description = $arrFeed['description'];
@@ -109,11 +105,11 @@ class News extends \Frontend
 		// Get the items
 		if ($arrFeed['maxItems'] > 0)
 		{
-			$objArticle = \NewsModel::findPublishedByPids($arrArchives, null, $arrFeed['maxItems']);
+			$objArticle = NewsModel::findPublishedByPids($arrArchives, null, $arrFeed['maxItems']);
 		}
 		else
 		{
-			$objArticle = \NewsModel::findPublishedByPids($arrArchives);
+			$objArticle = NewsModel::findPublishedByPids($arrArchives);
 		}
 
 		// Parse the items
@@ -134,7 +130,7 @@ class News extends \Frontend
 				// Get the jumpTo URL
 				if (!isset($arrUrls[$jumpTo]))
 				{
-					$objParent = \PageModel::findWithDetails($jumpTo);
+					$objParent = PageModel::findWithDetails($jumpTo);
 
 					// A jumpTo page is set but does no longer exist (see #5781)
 					if ($objParent === null)
@@ -143,7 +139,7 @@ class News extends \Frontend
 					}
 					else
 					{
-						$arrUrls[$jumpTo] = $this->generateFrontendUrl($objParent->row(), ((\Config::get('useAutoItem') && !\Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objParent->language);
+						$arrUrls[$jumpTo] = $this->generateFrontendUrl($objParent->row(), ((Config::get('useAutoItem') && !Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objParent->language);
 					}
 				}
 
@@ -154,7 +150,7 @@ class News extends \Frontend
 				}
 
 				$strUrl = $arrUrls[$jumpTo];
-				$objItem = new \FeedItem();
+				$objItem = new FeedItem();
 
 				$objItem->title = $objArticle->headline;
 				$objItem->link = $this->getLink($objArticle, $strUrl, $strLink);
@@ -165,7 +161,7 @@ class News extends \Frontend
 				if ($arrFeed['source'] == 'source_text')
 				{
 					$strDescription = '';
-					$objElement = \ContentModel::findPublishedByPidAndTable($objArticle->id, 'tl_news');
+					$objElement = ContentModel::findPublishedByPidAndTable($objArticle->id, 'tl_news');
 
 					if ($objElement !== null)
 					{
@@ -186,7 +182,7 @@ class News extends \Frontend
 				// Add the article image as enclosure
 				if ($objArticle->addImage)
 				{
-					$objFile = \FilesModel::findByUuid($objArticle->singleSRC);
+					$objFile = FilesModel::findByUuid($objArticle->singleSRC);
 
 					if ($objFile !== null)
 					{
@@ -201,7 +197,7 @@ class News extends \Frontend
 
 					if (is_array($arrEnclosure))
 					{
-						$objFile = \FilesModel::findMultipleByUuids($arrEnclosure);
+						$objFile = FilesModel::findMultipleByUuids($arrEnclosure);
 
 						if ($objFile !== null)
 						{
@@ -218,7 +214,7 @@ class News extends \Frontend
 		}
 
 		// Create the file
-		\File::putContent('share/' . $strFile . '.xml', $this->replaceInsertTags($objFeed->$strType(), false));
+		File::putContent('share/' . $strFile . '.xml', $this->replaceInsertTags($objFeed->$strType(), false));
 	}
 
 
@@ -242,7 +238,7 @@ class News extends \Frontend
 		$arrProcessed = array();
 
 		// Get all news archives
-		$objArchive = \NewsArchiveModel::findByProtected('');
+		$objArchive = NewsArchiveModel::findByProtected('');
 
 		// Walk through each archive
 		if ($objArchive !== null)
@@ -264,7 +260,7 @@ class News extends \Frontend
 				// Get the URL of the jumpTo page
 				if (!isset($arrProcessed[$objArchive->jumpTo]))
 				{
-					$objParent = \PageModel::findWithDetails($objArchive->jumpTo);
+					$objParent = PageModel::findWithDetails($objArchive->jumpTo);
 
 					// The target page does not exist
 					if ($objParent === null)
@@ -285,16 +281,16 @@ class News extends \Frontend
 					}
 
 					// Set the domain (see #6421)
-					$domain = ($objParent->rootUseSSL ? 'https://' : 'http://') . ($objParent->domain ?: \Environment::get('host')) . TL_PATH . '/';
+					$domain = ($objParent->rootUseSSL ? 'https://' : 'http://') . ($objParent->domain ?: Environment::get('host')) . TL_PATH . '/';
 
 					// Generate the URL
-					$arrProcessed[$objArchive->jumpTo] = $domain . $this->generateFrontendUrl($objParent->row(), ((\Config::get('useAutoItem') && !\Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objParent->language);
+					$arrProcessed[$objArchive->jumpTo] = $domain . $this->generateFrontendUrl($objParent->row(), ((Config::get('useAutoItem') && !Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objParent->language);
 				}
 
 				$strUrl = $arrProcessed[$objArchive->jumpTo];
 
 				// Get the items
-				$objArticle = \NewsModel::findPublishedDefaultByPid($objArchive->id);
+				$objArticle = NewsModel::findPublishedDefaultByPid($objArchive->id);
 
 				if ($objArticle !== null)
 				{
@@ -336,15 +332,15 @@ class News extends \Frontend
 
 			// Link to an article
 			case 'article':
-				if (($objArticle = \ArticleModel::findByPk($objItem->articleId, array('eager'=>true))) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
+				if (($objArticle = ArticleModel::findByPk($objItem->articleId, array('eager'=>true))) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
 				{
-					return $strBase . ampersand($this->generateFrontendUrl($objPid->row(), '/articles/' . ((!\Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id)));
+					return $strBase . ampersand($this->generateFrontendUrl($objPid->row(), '/articles/' . ((!Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id)));
 				}
 				break;
 		}
 
 		// Link to the default page
-		return $strBase . sprintf($strUrl, (($objItem->alias != '' && !\Config::get('disableAlias')) ? $objItem->alias : $objItem->id));
+		return $strBase . sprintf($strUrl, (($objItem->alias != '' && !Config::get('disableAlias')) ? $objItem->alias : $objItem->id));
 	}
 
 
@@ -355,7 +351,7 @@ class News extends \Frontend
 	public function purgeOldFeeds()
 	{
 		$arrFeeds = array();
-		$objFeeds = \NewsFeedModel::findAll();
+		$objFeeds = NewsFeedModel::findAll();
 
 		if ($objFeeds !== null)
 		{

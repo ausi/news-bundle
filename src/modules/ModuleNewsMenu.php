@@ -10,10 +10,6 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-
-/**
- * Run in a custom namespace, so the class can be replaced
- */
 namespace Contao;
 
 
@@ -25,7 +21,7 @@ namespace Contao;
  * @author     Leo Feyer <https://contao.org>
  * @package    News
  */
-class ModuleNewsMenu extends \ModuleNews
+class ModuleNewsMenu extends ModuleNews
 {
 
 	/**
@@ -49,7 +45,7 @@ class ModuleNewsMenu extends \ModuleNews
 	{
 		if (TL_MODE == 'BE')
 		{
-			$objTemplate = new \BackendTemplate('be_wildcard');
+			$objTemplate = new BackendTemplate('be_wildcard');
 
 			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['newsmenu'][0]) . ' ###';
 			$objTemplate->title = $this->headline;
@@ -103,7 +99,7 @@ class ModuleNewsMenu extends \ModuleNews
 	{
 		$time = time();
 		$arrData = array();
-		$this->Template = new \FrontendTemplate('mod_newsmenu_year');
+		$this->Template = new FrontendTemplate('mod_newsmenu_year');
 
 		// Get the dates
 		$objDates = $this->Database->query("SELECT FROM_UNIXTIME(date, '%Y') AS year, COUNT(*) AS count FROM tl_news WHERE pid IN(" . implode(',', array_map('intval', $this->news_archives)) . ")" . ((!BE_USER_LOGGED_IN || TL_MODE == 'BE') ? " AND (start='' OR start<$time) AND (stop='' OR stop>$time) AND published=1" : "") . " GROUP BY year ORDER BY year DESC");
@@ -119,7 +115,7 @@ class ModuleNewsMenu extends \ModuleNews
 		$arrItems = array();
 		$count = 0;
 		$limit = count($arrData);
-		$strUrl = \Environment::get('request');
+		$strUrl = Environment::get('request');
 
 		// Get the current "jumpTo" page
 		if ($this->jumpTo && ($objTarget = $this->objModel->getRelated('jumpTo')) !== null)
@@ -135,10 +131,10 @@ class ModuleNewsMenu extends \ModuleNews
 
 			$arrItems[$intYear]['date'] = $intDate;
 			$arrItems[$intYear]['link'] = $intYear;
-			$arrItems[$intYear]['href'] = $strUrl . (\Config::get('disableAlias') ? '&amp;' : '?') . 'year=' . $intDate;
+			$arrItems[$intYear]['href'] = $strUrl . (Config::get('disableAlias') ? '&amp;' : '?') . 'year=' . $intDate;
 			$arrItems[$intYear]['title'] = specialchars($intYear . ' (' . $quantity . ')');
 			$arrItems[$intYear]['class'] = trim(((++$count == 1) ? 'first ' : '') . (($count == $limit) ? 'last' : ''));
-			$arrItems[$intYear]['isActive'] = (\Input::get('year') == $intDate);
+			$arrItems[$intYear]['isActive'] = (Input::get('year') == $intDate);
 			$arrItems[$intYear]['quantity'] = $quantity;
 		}
 
@@ -195,18 +191,18 @@ class ModuleNewsMenu extends \ModuleNews
 
 				$arrItems[$intYear][$intMonth]['date'] = $intDate;
 				$arrItems[$intYear][$intMonth]['link'] = $GLOBALS['TL_LANG']['MONTHS'][$intMonth] . ' ' . $intYear;
-				$arrItems[$intYear][$intMonth]['href'] = $strUrl . (\Config::get('disableAlias') ? '&amp;' : '?') . 'month=' . $intDate;
+				$arrItems[$intYear][$intMonth]['href'] = $strUrl . (Config::get('disableAlias') ? '&amp;' : '?') . 'month=' . $intDate;
 				$arrItems[$intYear][$intMonth]['title'] = specialchars($GLOBALS['TL_LANG']['MONTHS'][$intMonth].' '.$intYear . ' (' . $quantity . ')');
 				$arrItems[$intYear][$intMonth]['class'] = trim(((++$count == 1) ? 'first ' : '') . (($count == $limit) ? 'last' : ''));
-				$arrItems[$intYear][$intMonth]['isActive'] = (\Input::get('month') == $intDate);
+				$arrItems[$intYear][$intMonth]['isActive'] = (Input::get('month') == $intDate);
 				$arrItems[$intYear][$intMonth]['quantity'] = $quantity;
 			}
 		}
 
 		$this->Template->items = $arrItems;
 		$this->Template->showQuantity = ($this->news_showQuantity != '') ? true : false;
-		$this->Template->url = $strUrl . (\Config::get('disableAlias') ? '&amp;' : '?');
-		$this->Template->activeYear = \Input::get('year');
+		$this->Template->url = $strUrl . (Config::get('disableAlias') ? '&amp;' : '?');
+		$this->Template->activeYear = Input::get('year');
 	}
 
 
@@ -217,7 +213,7 @@ class ModuleNewsMenu extends \ModuleNews
 	{
 		$time = time();
 		$arrData = array();
-		$this->Template = new \FrontendTemplate('mod_newsmenu_day');
+		$this->Template = new FrontendTemplate('mod_newsmenu_day');
 
 		// Get the dates
 		$objDates = $this->Database->query("SELECT FROM_UNIXTIME(date, '%Y%m%d') AS day, COUNT(*) AS count FROM tl_news WHERE pid IN(" . implode(',', array_map('intval', $this->news_archives)) . ")" . ((!BE_USER_LOGGED_IN || TL_MODE == 'BE') ? " AND (start='' OR start<$time) AND (stop='' OR stop>$time) AND published=1" : "") . " GROUP BY day ORDER BY day DESC");
@@ -229,7 +225,7 @@ class ModuleNewsMenu extends \ModuleNews
 
 		// Sort the data
 		krsort($arrData);
-		$strUrl = \Environment::get('request');
+		$strUrl = Environment::get('request');
 
 		// Get the current "jumpTo" page
 		if ($this->jumpTo && ($objTarget = $this->objModel->getRelated('jumpTo')) !== null)
@@ -237,7 +233,7 @@ class ModuleNewsMenu extends \ModuleNews
 			$strUrl = $this->generateFrontendUrl($objTarget->row());
 		}
 
-		$this->Date = \Input::get('day') ? new \Date(\Input::get('day'), 'Ymd') : new \Date();
+		$this->Date = Input::get('day') ? new Date(Input::get('day'), 'Ymd') : new Date();
 
 		$intYear = date('Y', $this->Date->tstamp);
 		$intMonth = date('m', $this->Date->tstamp);
@@ -250,7 +246,7 @@ class ModuleNewsMenu extends \ModuleNews
 		$prevYear = ($intMonth == 1) ? ($intYear - 1) : $intYear;
 		$lblPrevious = $GLOBALS['TL_LANG']['MONTHS'][($prevMonth - 1)] . ' ' . $prevYear;
 
-		$this->Template->prevHref = $strUrl . (\Config::get('disableAlias') ? '?id=' . \Input::get('id') . '&amp;' : '?') . 'day=' . $prevYear . ((strlen($prevMonth) < 2) ? '0' : '') . $prevMonth . '01';
+		$this->Template->prevHref = $strUrl . (Config::get('disableAlias') ? '?id=' . Input::get('id') . '&amp;' : '?') . 'day=' . $prevYear . ((strlen($prevMonth) < 2) ? '0' : '') . $prevMonth . '01';
 		$this->Template->prevTitle = specialchars($lblPrevious);
 		$this->Template->prevLink = $GLOBALS['TL_LANG']['MSC']['news_previous'] . ' ' . $lblPrevious;
 		$this->Template->prevLabel = $GLOBALS['TL_LANG']['MSC']['news_previous'];
@@ -263,7 +259,7 @@ class ModuleNewsMenu extends \ModuleNews
 		$nextYear = ($intMonth == 12) ? ($intYear + 1) : $intYear;
 		$lblNext = $GLOBALS['TL_LANG']['MONTHS'][($nextMonth - 1)] . ' ' . $nextYear;
 
-		$this->Template->nextHref = $strUrl . (\Config::get('disableAlias') ? '?id=' . \Input::get('id') . '&amp;' : '?') . 'day=' . $nextYear . ((strlen($nextMonth) < 2) ? '0' : '') . $nextMonth . '01';
+		$this->Template->nextHref = $strUrl . (Config::get('disableAlias') ? '?id=' . Input::get('id') . '&amp;' : '?') . 'day=' . $nextYear . ((strlen($nextMonth) < 2) ? '0' : '') . $nextMonth . '01';
 		$this->Template->nextTitle = specialchars($lblNext);
 		$this->Template->nextLink = $lblNext . ' ' . $GLOBALS['TL_LANG']['MSC']['news_next'];
 		$this->Template->nextLabel = $GLOBALS['TL_LANG']['MSC']['news_next'];
@@ -359,7 +355,7 @@ class ModuleNewsMenu extends \ModuleNews
 
 			$arrDays[$strWeekClass][$i]['label'] = $intDay;
 			$arrDays[$strWeekClass][$i]['class'] = 'days active' . $strClass;
-			$arrDays[$strWeekClass][$i]['href'] = $strUrl . (\Config::get('disableAlias') ? '&amp;' : '?') . 'day=' . $intKey;
+			$arrDays[$strWeekClass][$i]['href'] = $strUrl . (Config::get('disableAlias') ? '&amp;' : '?') . 'day=' . $intKey;
 			$arrDays[$strWeekClass][$i]['title'] = sprintf(specialchars($GLOBALS['TL_LANG']['MSC']['news_items']), $arrData[$intKey]);
 		}
 

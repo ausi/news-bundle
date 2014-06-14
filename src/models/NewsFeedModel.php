@@ -10,11 +10,9 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-
-/**
- * Run in a custom namespace, so the class can be replaced
- */
 namespace Contao;
+
+use Contao\Model\Collection;
 
 
 /**
@@ -24,7 +22,7 @@ namespace Contao;
  * @author    Leo Feyer <https://github.com/leofeyer>
  * @copyright Leo Feyer 2005-2014
  */
-class NewsFeedModel extends \Model
+class NewsFeedModel extends Model
 {
 
 	/**
@@ -40,7 +38,7 @@ class NewsFeedModel extends \Model
 	 * @param integer $intId      The news archive ID
 	 * @param array   $arrOptions An optional options array
 	 *
-	 * @return \Model\Collection|null A collection of models or null if the news archive is not part of a feed
+	 * @return Collection|null A collection of models or null if the news archive is not part of a feed
 	 */
 	public static function findByArchive($intId, array $arrOptions=array())
 	{
@@ -55,7 +53,7 @@ class NewsFeedModel extends \Model
 	 * @param array $arrIds     An array of news feed IDs
 	 * @param array $arrOptions An optional options array
 	 *
-	 * @return \Model\Collection|null A collection of models or null if there are no feeds
+	 * @return Collection|null A collection of models or null if there are no feeds
 	 */
 	public static function findByIds($arrIds, array $arrOptions=array())
 	{

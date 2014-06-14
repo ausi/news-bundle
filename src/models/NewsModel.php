@@ -10,11 +10,9 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-
-/**
- * Run in a custom namespace, so the class can be replaced
- */
 namespace Contao;
+
+use Contao\Model\Collection;
 
 
 /**
@@ -24,7 +22,7 @@ namespace Contao;
  * @author    Leo Feyer <https://github.com/leofeyer>
  * @copyright Leo Feyer 2005-2014
  */
-class NewsModel extends \Model
+class NewsModel extends Model
 {
 
 	/**
@@ -41,7 +39,7 @@ class NewsModel extends \Model
 	 * @param array $arrPids    An array of parent IDs
 	 * @param array $arrOptions An optional options array
 	 *
-	 * @return \Model|null The NewsModel or null if there are no news
+	 * @return Model|null The NewsModel or null if there are no news
 	 */
 	public static function findPublishedByParentAndIdOrAlias($varId, $arrPids, array $arrOptions=array())
 	{
@@ -72,7 +70,7 @@ class NewsModel extends \Model
 	 * @param integer $intOffset   An optional offset
 	 * @param array   $arrOptions  An optional options array
 	 *
-	 * @return \Model\Collection|null A collection of models or null if there are no news
+	 * @return Collection|null A collection of models or null if there are no news
 	 */
 	public static function findPublishedByPids($arrPids, $blnFeatured=null, $intLimit=0, $intOffset=0, array $arrOptions=array())
 	{
@@ -156,7 +154,7 @@ class NewsModel extends \Model
 	 * @param integer $intPid     The news archive ID
 	 * @param array   $arrOptions An optional options array
 	 *
-	 * @return \Model\Collection|null A collection of models or null if there are no news
+	 * @return Collection|null A collection of models or null if there are no news
 	 */
 	public static function findPublishedDefaultByPid($intPid, array $arrOptions=array())
 	{
@@ -185,7 +183,7 @@ class NewsModel extends \Model
 	 * @param integer $intLimit   An optional limit
 	 * @param array   $arrOptions An optional options array
 	 *
-	 * @return \Model\Collection|null A collection of models or null if there are no news
+	 * @return Collection|null A collection of models or null if there are no news
 	 */
 	public static function findPublishedByPid($intId, $intLimit=0, array $arrOptions=array())
 	{
@@ -218,7 +216,7 @@ class NewsModel extends \Model
 	 * @param integer $intOffset  An optional offset
 	 * @param array   $arrOptions An optional options array
 	 *
-	 * @return \Model\Collection|null A collection of models or null if there are no news
+	 * @return Collection|null A collection of models or null if there are no news
 	 */
 	public static function findPublishedFromToByPids($intFrom, $intTo, $arrPids, $intLimit=0, $intOffset=0, array $arrOptions=array())
 	{
