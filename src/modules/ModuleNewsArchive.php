@@ -147,7 +147,7 @@ class ModuleNewsArchive extends ModuleNews
 			$intEnd = time();
 		}
 
-		$this->Template->articles = array();
+		$this->Template->articles = [];
 
 		// Split the result
 		if ($this->perPage > 0)

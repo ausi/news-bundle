@@ -90,7 +90,7 @@ class ModuleNewsList extends ModuleNews
 			$blnFeatured = null;
 		}
 
-		$this->Template->articles = array();
+		$this->Template->articles = [];
 		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyList'];
 
 		// Get the total number of items

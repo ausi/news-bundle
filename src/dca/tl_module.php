@@ -23,120 +23,120 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['newsmenu']    = '{title_legend},nam
 /**
  * Add fields to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_archives'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_archives'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_archives'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'options_callback'        => array('tl_module_news', 'getNewsArchives'),
-	'eval'                    => array('multiple'=>true, 'mandatory'=>true),
+	'options_callback'        => ['tl_module_news', 'getNewsArchives'],
+	'eval'                    => ['multiple'=>true, 'mandatory'=>true],
 	'sql'                     => "blob NULL"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_featured'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_featured'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_featured'],
 	'default'                 => 'all_items',
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'                 => array('all_items', 'featured', 'unfeatured'),
+	'options'                 => ['all_items', 'featured', 'unfeatured'],
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module'],
-	'eval'                    => array('tl_class'=>'w50'),
+	'eval'                    => ['tl_class'=>'w50'],
 	'sql'                     => "varchar(16) NOT NULL default ''"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_jumpToCurrent'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_jumpToCurrent'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_jumpToCurrent'],
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'                 => array('hide_module', 'show_current', 'all_items'),
+	'options'                 => ['hide_module', 'show_current', 'all_items'],
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module'],
-	'eval'                    => array('tl_class'=>'w50'),
+	'eval'                    => ['tl_class'=>'w50'],
 	'sql'                     => "varchar(16) NOT NULL default ''"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_readerModule'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_readerModule'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_readerModule'],
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options_callback'        => array('tl_module_news', 'getReaderModules'),
+	'options_callback'        => ['tl_module_news', 'getReaderModules'],
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module'],
-	'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+	'eval'                    => ['includeBlankOption'=>true, 'tl_class'=>'w50'],
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_metaFields'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_metaFields'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_metaFields'],
-	'default'                 => array('date', 'author'),
+	'default'                 => ['date', 'author'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'options'                 => array('date', 'author', 'comments'),
+	'options'                 => ['date', 'author', 'comments'],
 	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	'eval'                    => array('multiple'=>true),
+	'eval'                    => ['multiple'=>true],
 	'sql'                     => "varchar(255) NOT NULL default ''"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_template'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_template'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_template'],
 	'default'                 => 'news_latest',
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options_callback'        => array('tl_module_news', 'getNewsTemplates'),
-	'eval'                    => array('tl_class'=>'w50'),
+	'options_callback'        => ['tl_module_news', 'getNewsTemplates'],
+	'eval'                    => ['tl_class'=>'w50'],
 	'sql'                     => "varchar(32) NOT NULL default ''"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_format'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_format'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_format'],
 	'default'                 => 'news_month',
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'                 => array('news_day', 'news_month', 'news_year'),
+	'options'                 => ['news_day', 'news_month', 'news_year'],
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module'],
-	'eval'                    => array('tl_class'=>'w50'),
-	'wizard' => array
-	(
-		array('tl_module_news', 'hideStartDay')
-	),
+	'eval'                    => ['tl_class'=>'w50'],
+	'wizard' =>
+	[
+		['tl_module_news', 'hideStartDay']
+	],
 	'sql'                     => "varchar(32) NOT NULL default ''"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_startDay'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_startDay'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_startDay'],
 	'default'                 => 0,
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'                 => array(0, 1, 2, 3, 4, 5, 6),
+	'options'                 => [0, 1, 2, 3, 4, 5, 6],
 	'reference'               => &$GLOBALS['TL_LANG']['DAYS'],
-	'eval'                    => array('tl_class'=>'w50'),
+	'eval'                    => ['tl_class'=>'w50'],
 	'sql'                     => "smallint(5) unsigned NOT NULL default '0'"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_order'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_order'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_order'],
 	'default'                 => 'descending',
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'                 => array('ascending', 'descending'),
+	'options'                 => ['ascending', 'descending'],
 	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	'eval'                    => array('tl_class'=>'w50'),
+	'eval'                    => ['tl_class'=>'w50'],
 	'sql'                     => "varchar(255) NOT NULL default ''"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['news_showQuantity'] = array
-(
+$GLOBALS['TL_DCA']['tl_module']['fields']['news_showQuantity'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['news_showQuantity'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
 	'sql'                     => "char(1) NOT NULL default ''"
-);
+];
 
 
 /**
@@ -177,10 +177,10 @@ class tl_module_news extends Backend
 	{
 		if (!$this->User->isAdmin && !is_array($this->User->news))
 		{
-			return array();
+			return [];
 		}
 
-		$arrArchives = array();
+		$arrArchives = [];
 		$objArchives = $this->Database->execute("SELECT id, title FROM tl_news_archive ORDER BY title");
 
 		while ($objArchives->next())
@@ -201,7 +201,7 @@ class tl_module_news extends Backend
 	 */
 	public function getReaderModules()
 	{
-		$arrModules = array();
+		$arrModules = [];
 		$objModules = $this->Database->execute("SELECT m.id, m.name, t.name AS theme FROM tl_module m LEFT JOIN tl_theme t ON m.pid=t.id WHERE m.type='newsreader' ORDER BY t.name, m.name");
 
 		while ($objModules->next())

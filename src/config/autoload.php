@@ -14,8 +14,8 @@
 /**
  * Register the templates
  */
-TemplateLoader::addFiles(array
-(
+TemplateLoader::addFiles(
+[
 	'mod_newsarchive'   => 'system/modules/news/templates/modules',
 	'mod_newslist'      => 'system/modules/news/templates/modules',
 	'mod_newsmenu'      => 'system/modules/news/templates/modules',
@@ -26,4 +26,4 @@ TemplateLoader::addFiles(array
 	'news_latest'       => 'system/modules/news/templates/news',
 	'news_short'        => 'system/modules/news/templates/news',
 	'news_simple'       => 'system/modules/news/templates/news',
-));
+]);

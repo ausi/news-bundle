@@ -144,7 +144,7 @@ class ModuleNewsReader extends ModuleNews
 		$this->Template->hlc = 'h' . ($intHl + 1);
 
 		$this->import('Comments');
-		$arrNotifies = array();
+		$arrNotifies = [];
 
 		// Notify the system administrator
 		if ($objArchive->notify != 'notify_author')

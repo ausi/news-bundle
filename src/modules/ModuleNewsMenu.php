@@ -98,7 +98,7 @@ class ModuleNewsMenu extends ModuleNews
 	protected function compileYearlyMenu()
 	{
 		$time = time();
-		$arrData = array();
+		$arrData = [];
 		$this->Template = new FrontendTemplate('mod_newsmenu_year');
 
 		// Get the dates
@@ -112,7 +112,7 @@ class ModuleNewsMenu extends ModuleNews
 		// Sort the data
 		($this->news_order == 'ascending') ? ksort($arrData) : krsort($arrData);
 
-		$arrItems = array();
+		$arrItems = [];
 		$count = 0;
 		$limit = count($arrData);
 		$strUrl = Environment::get('request');
@@ -149,7 +149,7 @@ class ModuleNewsMenu extends ModuleNews
 	protected function compileMonthlyMenu()
 	{
 		$time = time();
-		$arrData = array();
+		$arrData = [];
 
 		// Get the dates
 		$objDates = $this->Database->query("SELECT FROM_UNIXTIME(date, '%Y') AS year, FROM_UNIXTIME(date, '%m') AS month, COUNT(*) AS count FROM tl_news WHERE pid IN(" . implode(',', array_map('intval', $this->news_archives)) . ")" . ((!BE_USER_LOGGED_IN || TL_MODE == 'BE') ? " AND (start='' OR start<$time) AND (stop='' OR stop>$time) AND published=1" : "") . " GROUP BY year, month ORDER BY year DESC, month DESC");
@@ -168,7 +168,7 @@ class ModuleNewsMenu extends ModuleNews
 		($this->news_order == 'ascending') ? ksort($arrData) : krsort($arrData);
 
 		$strUrl = '';
-		$arrItems = array();
+		$arrItems = [];
 
 		// Get the current "jumpTo" page
 		if (($objTarget = $this->objModel->getRelated('jumpTo')) !== null)
@@ -212,7 +212,7 @@ class ModuleNewsMenu extends ModuleNews
 	protected function compileDailyMenu()
 	{
 		$time = time();
-		$arrData = array();
+		$arrData = [];
 		$this->Template = new FrontendTemplate('mod_newsmenu_day');
 
 		// Get the dates
@@ -283,7 +283,7 @@ class ModuleNewsMenu extends ModuleNews
 	 */
 	protected function compileDays()
 	{
-		$arrDays = array();
+		$arrDays = [];
 
 		for ($i=0; $i<7; $i++)
 		{
@@ -313,7 +313,7 @@ class ModuleNewsMenu extends ModuleNews
 
 		$intColumnCount = -1;
 		$intNumberOfRows = ceil(($intDaysInMonth + $intFirstDayOffset) / 7);
-		$arrDays = array();
+		$arrDays = [];
 
 		// Compile days
 		for ($i=1; $i<=($intNumberOfRows * 7); $i++)
@@ -335,7 +335,7 @@ class ModuleNewsMenu extends ModuleNews
 			{
 				$arrDays[$strWeekClass][$i]['label'] = '&nbsp;';
 				$arrDays[$strWeekClass][$i]['class'] = 'days empty' . $strClass ;
-				$arrDays[$strWeekClass][$i]['events'] = array();
+				$arrDays[$strWeekClass][$i]['events'] = [];
 
 				continue;
 			}
@@ -348,7 +348,7 @@ class ModuleNewsMenu extends ModuleNews
 			{
 				$arrDays[$strWeekClass][$i]['label'] = $intDay;
 				$arrDays[$strWeekClass][$i]['class'] = 'days' . $strClass;
-				$arrDays[$strWeekClass][$i]['events'] = array();
+				$arrDays[$strWeekClass][$i]['events'] = [];
 
 				continue;
 			}

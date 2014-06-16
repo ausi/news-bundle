@@ -41,7 +41,7 @@ class NewsModel extends Model
 	 *
 	 * @return Model|null The NewsModel or null if there are no news
 	 */
-	public static function findPublishedByParentAndIdOrAlias($varId, $arrPids, array $arrOptions=array())
+	public static function findPublishedByParentAndIdOrAlias($varId, $arrPids, array $arrOptions=[])
 	{
 		if (!is_array($arrPids) || empty($arrPids))
 		{
@@ -49,7 +49,7 @@ class NewsModel extends Model
 		}
 
 		$t = static::$strTable;
-		$arrColumns = array("($t.id=? OR $t.alias=?) AND $t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")");
+		$arrColumns = ["($t.id=? OR $t.alias=?) AND $t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")"];
 
 		if (!BE_USER_LOGGED_IN)
 		{
@@ -57,7 +57,7 @@ class NewsModel extends Model
 			$arrColumns[] = "($t.start='' OR $t.start<$time) AND ($t.stop='' OR $t.stop>$time) AND $t.published=1";
 		}
 
-		return static::findBy($arrColumns, array((is_numeric($varId) ? $varId : 0), $varId), $arrOptions);
+		return static::findBy($arrColumns, [(is_numeric($varId) ? $varId : 0), $varId], $arrOptions);
 	}
 
 
@@ -72,7 +72,7 @@ class NewsModel extends Model
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
-	public static function findPublishedByPids($arrPids, $blnFeatured=null, $intLimit=0, $intOffset=0, array $arrOptions=array())
+	public static function findPublishedByPids($arrPids, $blnFeatured=null, $intLimit=0, $intOffset=0, array $arrOptions=[])
 	{
 		if (!is_array($arrPids) || empty($arrPids))
 		{
@@ -80,7 +80,7 @@ class NewsModel extends Model
 		}
 
 		$t = static::$strTable;
-		$arrColumns = array("$t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")");
+		$arrColumns = ["$t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")"];
 
 		if ($blnFeatured === true)
 		{
@@ -119,7 +119,7 @@ class NewsModel extends Model
 	 *
 	 * @return integer The number of news items
 	 */
-	public static function countPublishedByPids($arrPids, $blnFeatured=null, array $arrOptions=array())
+	public static function countPublishedByPids($arrPids, $blnFeatured=null, array $arrOptions=[])
 	{
 		if (!is_array($arrPids) || empty($arrPids))
 		{
@@ -127,7 +127,7 @@ class NewsModel extends Model
 		}
 
 		$t = static::$strTable;
-		$arrColumns = array("$t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")");
+		$arrColumns = ["$t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")"];
 
 		if ($blnFeatured === true)
 		{
@@ -156,10 +156,10 @@ class NewsModel extends Model
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
-	public static function findPublishedDefaultByPid($intPid, array $arrOptions=array())
+	public static function findPublishedDefaultByPid($intPid, array $arrOptions=[])
 	{
 		$t = static::$strTable;
-		$arrColumns = array("$t.pid=? AND $t.source='default'");
+		$arrColumns = ["$t.pid=? AND $t.source='default'"];
 
 		if (!BE_USER_LOGGED_IN)
 		{
@@ -185,12 +185,12 @@ class NewsModel extends Model
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
-	public static function findPublishedByPid($intId, $intLimit=0, array $arrOptions=array())
+	public static function findPublishedByPid($intId, $intLimit=0, array $arrOptions=[])
 	{
 		$time = time();
 		$t = static::$strTable;
 
-		$arrColumns = array("$t.pid=? AND ($t.start='' OR $t.start<$time) AND ($t.stop='' OR $t.stop>$time) AND $t.published=1");
+		$arrColumns = ["$t.pid=? AND ($t.start='' OR $t.start<$time) AND ($t.stop='' OR $t.stop>$time) AND $t.published=1"];
 
 		if (!isset($arrOptions['order']))
 		{
@@ -218,7 +218,7 @@ class NewsModel extends Model
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
-	public static function findPublishedFromToByPids($intFrom, $intTo, $arrPids, $intLimit=0, $intOffset=0, array $arrOptions=array())
+	public static function findPublishedFromToByPids($intFrom, $intTo, $arrPids, $intLimit=0, $intOffset=0, array $arrOptions=[])
 	{
 		if (!is_array($arrPids) || empty($arrPids))
 		{
@@ -226,7 +226,7 @@ class NewsModel extends Model
 		}
 
 		$t = static::$strTable;
-		$arrColumns = array("$t.date>=? AND $t.date<=? AND $t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")");
+		$arrColumns = ["$t.date>=? AND $t.date<=? AND $t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")"];
 
 		if (!BE_USER_LOGGED_IN)
 		{
@@ -242,7 +242,7 @@ class NewsModel extends Model
 		$arrOptions['limit']  = $intLimit;
 		$arrOptions['offset'] = $intOffset;
 
-		return static::findBy($arrColumns, array($intFrom, $intTo), $arrOptions);
+		return static::findBy($arrColumns, [$intFrom, $intTo], $arrOptions);
 	}
 
 
@@ -256,7 +256,7 @@ class NewsModel extends Model
 	 *
 	 * @return integer The number of news items
 	 */
-	public static function countPublishedFromToByPids($intFrom, $intTo, $arrPids, array $arrOptions=array())
+	public static function countPublishedFromToByPids($intFrom, $intTo, $arrPids, array $arrOptions=[])
 	{
 		if (!is_array($arrPids) || empty($arrPids))
 		{
@@ -264,7 +264,7 @@ class NewsModel extends Model
 		}
 
 		$t = static::$strTable;
-		$arrColumns = array("$t.date>=? AND $t.date<=? AND $t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")");
+		$arrColumns = ["$t.date>=? AND $t.date<=? AND $t.pid IN(" . implode(',', array_map('intval', $arrPids)) . ")"];
 
 		if (!BE_USER_LOGGED_IN)
 		{
@@ -272,6 +272,6 @@ class NewsModel extends Model
 			$arrColumns[] = "($t.start='' OR $t.start<$time) AND ($t.stop='' OR $t.stop>$time) AND $t.published=1";
 		}
 
-		return static::countBy($arrColumns, array($intFrom, $intTo), $arrOptions);
+		return static::countBy($arrColumns, [$intFrom, $intTo], $arrOptions);
 	}
 }

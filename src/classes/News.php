@@ -115,7 +115,7 @@ class News extends Frontend
 		// Parse the items
 		if ($objArticle !== null)
 		{
-			$arrUrls = array();
+			$arrUrls = [];
 
 			while ($objArticle->next())
 			{
@@ -227,7 +227,7 @@ class News extends Frontend
 	 */
 	public function getSearchablePages($arrPages, $intRoot=0, $blnIsSitemap=false)
 	{
-		$arrRoot = array();
+		$arrRoot = [];
 
 		if ($intRoot > 0)
 		{
@@ -235,7 +235,7 @@ class News extends Frontend
 		}
 
 		$time = time();
-		$arrProcessed = array();
+		$arrProcessed = [];
 
 		// Get all news archives
 		$objArchive = NewsArchiveModel::findByProtected('');
@@ -332,7 +332,7 @@ class News extends Frontend
 
 			// Link to an article
 			case 'article':
-				if (($objArticle = ArticleModel::findByPk($objItem->articleId, array('eager'=>true))) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
+				if (($objArticle = ArticleModel::findByPk($objItem->articleId, ['eager'=>true])) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
 				{
 					return $strBase . ampersand($this->generateFrontendUrl($objPid->row(), '/articles/' . ((!Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id)));
 				}
@@ -350,7 +350,7 @@ class News extends Frontend
 	 */
 	public function purgeOldFeeds()
 	{
-		$arrFeeds = array();
+		$arrFeeds = [];
 		$objFeeds = NewsFeedModel::findAll();
 
 		if ($objFeeds !== null)

@@ -20,44 +20,44 @@ $GLOBALS['TL_DCA']['tl_user_group']['palettes']['default'] = str_replace('fop;',
 /**
  * Add fields to tl_user_group
  */
-$GLOBALS['TL_DCA']['tl_user_group']['fields']['news'] = array
-(
+$GLOBALS['TL_DCA']['tl_user_group']['fields']['news'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_user']['news'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
 	'foreignKey'              => 'tl_news_archive.title',
-	'eval'                    => array('multiple'=>true),
+	'eval'                    => ['multiple'=>true],
 	'sql'                     => "blob NULL"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_user_group']['fields']['newp'] = array
-(
+$GLOBALS['TL_DCA']['tl_user_group']['fields']['newp'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_user']['newp'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'options'                 => array('create', 'delete'),
+	'options'                 => ['create', 'delete'],
 	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	'eval'                    => array('multiple'=>true),
+	'eval'                    => ['multiple'=>true],
 	'sql'                     => "blob NULL"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_user_group']['fields']['newsfeeds'] = array
-(
+$GLOBALS['TL_DCA']['tl_user_group']['fields']['newsfeeds'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_user']['newsfeeds'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
 	'foreignKey'              => 'tl_news_feed.title',
-	'eval'                    => array('multiple'=>true),
+	'eval'                    => ['multiple'=>true],
 	'sql'                     => "blob NULL"
-);
+];
 
-$GLOBALS['TL_DCA']['tl_user_group']['fields']['newsfeedp'] = array
-(
+$GLOBALS['TL_DCA']['tl_user_group']['fields']['newsfeedp'] =
+[
 	'label'                   => &$GLOBALS['TL_LANG']['tl_user']['newsfeedp'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'options'                 => array('create', 'delete'),
+	'options'                 => ['create', 'delete'],
 	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	'eval'                    => array('multiple'=>true),
+	'eval'                    => ['multiple'=>true],
 	'sql'                     => "blob NULL"
-);
+];

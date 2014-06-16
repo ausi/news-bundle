@@ -28,7 +28,7 @@ abstract class ModuleNews extends Module
 	 * URL cache array
 	 * @var array
 	 */
-	private static $arrUrlCache = array();
+	private static $arrUrlCache = [];
 
 
 	/**
@@ -45,7 +45,7 @@ abstract class ModuleNews extends Module
 
 		$this->import('FrontendUser', 'User');
 		$objArchive = NewsArchiveModel::findMultipleByIds($arrArchives);
-		$arrArchives = array();
+		$arrArchives = [];
 
 		if ($objArchive !== null)
 		{
@@ -173,7 +173,7 @@ abstract class ModuleNews extends Module
 			}
 		}
 
-		$objTemplate->enclosure = array();
+		$objTemplate->enclosure = [];
 
 		// Add enclosures
 		if ($objArticle->addEnclosure)
@@ -207,11 +207,11 @@ abstract class ModuleNews extends Module
 
 		if ($limit < 1)
 		{
-			return array();
+			return [];
 		}
 
 		$count = 0;
-		$arrArticles = array();
+		$arrArticles = [];
 
 		while ($objArticles->next())
 		{
@@ -233,11 +233,11 @@ abstract class ModuleNews extends Module
 
 		if (!is_array($meta))
 		{
-			return array();
+			return [];
 		}
 
 		global $objPage;
-		$return = array();
+		$return = [];
 
 		foreach ($meta as $field)
 		{
@@ -320,7 +320,7 @@ abstract class ModuleNews extends Module
 
 			// Link to an article
 			case 'article':
-				if (($objArticle = ArticleModel::findByPk($objItem->articleId, array('eager'=>true))) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
+				if (($objArticle = ArticleModel::findByPk($objItem->articleId, ['eager'=>true])) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
 				{
 					self::$arrUrlCache[$strCacheKey] = ampersand($this->generateFrontendUrl($objPid->row(), '/articles/' . ((!Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id)));
 				}

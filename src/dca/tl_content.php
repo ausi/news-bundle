@@ -17,7 +17,7 @@
 if (Input::get('do') == 'news')
 {
 	$GLOBALS['TL_DCA']['tl_content']['config']['ptable'] = 'tl_news';
-	$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('tl_content_news', 'checkPermission');
+	$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = ['tl_content_news', 'checkPermission'];
 }
 
 
@@ -55,7 +55,7 @@ class tl_content_news extends Backend
 		// Set the root IDs
 		if (!is_array($this->User->news) || empty($this->User->news))
 		{
-			$root = array(0);
+			$root = [0];
 		}
 		else
 		{

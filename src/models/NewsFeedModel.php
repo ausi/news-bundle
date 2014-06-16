@@ -40,10 +40,10 @@ class NewsFeedModel extends Model
 	 *
 	 * @return Collection|null A collection of models or null if the news archive is not part of a feed
 	 */
-	public static function findByArchive($intId, array $arrOptions=array())
+	public static function findByArchive($intId, array $arrOptions=[])
 	{
 		$t = static::$strTable;
-		return static::findBy(array("$t.archives LIKE '%\"" . intval($intId) . "\"%'"), null, $arrOptions);
+		return static::findBy(["$t.archives LIKE '%\"" . intval($intId) . "\"%'"], null, $arrOptions);
 	}
 
 
@@ -55,7 +55,7 @@ class NewsFeedModel extends Model
 	 *
 	 * @return Collection|null A collection of models or null if there are no feeds
 	 */
-	public static function findByIds($arrIds, array $arrOptions=array())
+	public static function findByIds($arrIds, array $arrOptions=[])
 	{
 		if (!is_array($arrIds) || empty($arrIds))
 		{
@@ -63,6 +63,6 @@ class NewsFeedModel extends Model
 		}
 
 		$t = static::$strTable;
-		return static::findBy(array("$t.id IN(" . implode(',', array_map('intval', $arrIds)) . ")"), null, $arrOptions);
+		return static::findBy(["$t.id IN(" . implode(',', array_map('intval', $arrIds)) . ")"], null, $arrOptions);
 	}
 }
