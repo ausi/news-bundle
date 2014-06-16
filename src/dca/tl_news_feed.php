@@ -387,9 +387,9 @@ class tl_news_feed extends Backend
 	 *
 	 * This method is triggered when a single news archive or multiple news
 	 * archives are modified (edit/editAll).
-	 * @param \DataContainer
+	 * @param Contao\DataContainer
 	 */
-	public function scheduleUpdate(DataContainer $dc)
+	public function scheduleUpdate(Contao\DataContainer $dc)
 	{
 		// Return if there is no ID
 		if (!$dc->id)
@@ -436,11 +436,11 @@ class tl_news_feed extends Backend
 	/**
 	 * Check the RSS-feed alias
 	 * @param mixed
-	 * @param \DataContainer
+	 * @param Contao\DataContainer
 	 * @return mixed
-	 * @throws \Exception
+	 * @throws Exception
 	 */
-	public function checkFeedAlias($varValue, DataContainer $dc)
+	public function checkFeedAlias($varValue, Contao\DataContainer $dc)
 	{
 		// No change or empty value
 		if ($varValue == $dc->value || $varValue == '')
