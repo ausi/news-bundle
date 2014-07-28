@@ -64,11 +64,11 @@ class NewsModel extends Model
 	/**
 	 * Find published news items by their parent ID
 	 *
-	 * @param array   $arrPids     An array of news archive IDs
-	 * @param boolean $blnFeatured If true, return only featured news, if false, return only unfeatured news
-	 * @param integer $intLimit    An optional limit
-	 * @param integer $intOffset   An optional offset
-	 * @param array   $arrOptions  An optional options array
+	 * @param array $arrPids     An array of news archive IDs
+	 * @param bool  $blnFeatured If true, return only featured news, if false, return only unfeatured news
+	 * @param int   $intLimit    An optional limit
+	 * @param int   $intOffset   An optional offset
+	 * @param array $arrOptions  An optional options array
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
@@ -113,11 +113,11 @@ class NewsModel extends Model
 	/**
 	 * Count published news items by their parent ID
 	 *
-	 * @param array   $arrPids     An array of news archive IDs
-	 * @param boolean $blnFeatured If true, return only featured news, if false, return only unfeatured news
-	 * @param array   $arrOptions  An optional options array
+	 * @param array $arrPids     An array of news archive IDs
+	 * @param bool  $blnFeatured If true, return only featured news, if false, return only unfeatured news
+	 * @param array $arrOptions  An optional options array
 	 *
-	 * @return integer The number of news items
+	 * @return int The number of news items
 	 */
 	public static function countPublishedByPids($arrPids, $blnFeatured=null, array $arrOptions=[])
 	{
@@ -151,8 +151,8 @@ class NewsModel extends Model
 	/**
 	 * Find published news items with the default redirect target by their parent ID
 	 *
-	 * @param integer $intPid     The news archive ID
-	 * @param array   $arrOptions An optional options array
+	 * @param int   $intPid     The news archive ID
+	 * @param array $arrOptions An optional options array
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
@@ -179,9 +179,9 @@ class NewsModel extends Model
 	/**
 	 * Find published news items by their parent ID
 	 *
-	 * @param integer $intId      The news archive ID
-	 * @param integer $intLimit   An optional limit
-	 * @param array   $arrOptions An optional options array
+	 * @param int   $intId      The news archive ID
+	 * @param int   $intLimit   An optional limit
+	 * @param array $arrOptions An optional options array
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
@@ -209,12 +209,12 @@ class NewsModel extends Model
 	/**
 	 * Find all published news items of a certain period of time by their parent ID
 	 *
-	 * @param integer $intFrom    The start date as Unix timestamp
-	 * @param integer $intTo      The end date as Unix timestamp
-	 * @param array   $arrPids    An array of news archive IDs
-	 * @param integer $intLimit   An optional limit
-	 * @param integer $intOffset  An optional offset
-	 * @param array   $arrOptions An optional options array
+	 * @param int   $intFrom    The start date as Unix timestamp
+	 * @param int   $intTo      The end date as Unix timestamp
+	 * @param array $arrPids    An array of news archive IDs
+	 * @param int   $intLimit   An optional limit
+	 * @param int   $intOffset  An optional offset
+	 * @param array $arrOptions An optional options array
 	 *
 	 * @return Collection|null A collection of models or null if there are no news
 	 */
@@ -249,12 +249,12 @@ class NewsModel extends Model
 	/**
 	 * Count all published news items of a certain period of time by their parent ID
 	 *
-	 * @param integer $intFrom    The start date as Unix timestamp
-	 * @param integer $intTo      The end date as Unix timestamp
-	 * @param array   $arrPids    An array of news archive IDs
-	 * @param array   $arrOptions An optional options array
+	 * @param int   $intFrom    The start date as Unix timestamp
+	 * @param int   $intTo      The end date as Unix timestamp
+	 * @param array $arrPids    An array of news archive IDs
+	 * @param array $arrOptions An optional options array
 	 *
-	 * @return integer The number of news items
+	 * @return int The number of news items
 	 */
 	public static function countPublishedFromToByPids($intFrom, $intTo, $arrPids, array $arrOptions=[])
 	{

@@ -26,8 +26,8 @@ class News extends Frontend
 
 	/**
 	 * Update a particular RSS feed
-	 * @param integer
-	 * @param boolean
+	 * @param int
+	 * @param bool
 	 */
 	public function generateFeed($intId, $blnIsFeedId=false)
 	{
@@ -221,8 +221,8 @@ class News extends Frontend
 	/**
 	 * Add news items to the indexer
 	 * @param array
-	 * @param integer
-	 * @param boolean
+	 * @param int
+	 * @param bool
 	 * @return array
 	 */
 	public function getSearchablePages($arrPages, $intRoot=0, $blnIsSitemap=false)

@@ -35,8 +35,8 @@ class NewsFeedModel extends Model
 	/**
 	 * Find all feeds which include a certain news archive
 	 *
-	 * @param integer $intId      The news archive ID
-	 * @param array   $arrOptions An optional options array
+	 * @param int   $intId      The news archive ID
+	 * @param array $arrOptions An optional options array
 	 *
 	 * @return Collection|null A collection of models or null if the news archive is not part of a feed
 	 */

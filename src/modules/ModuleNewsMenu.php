@@ -26,7 +26,7 @@ class ModuleNewsMenu extends ModuleNews
 
 	/**
 	 * Current date object
-	 * @var integer
+	 * @var int
 	 */
 	protected $Date;
 

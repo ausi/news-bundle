@@ -845,8 +845,8 @@ class tl_news extends Backend
 
 	/**
 	 * Feature/unfeature a news item
-	 * @param integer
-	 * @param boolean
+	 * @param int
+	 * @param bool
 	 * @return string
 	 */
 	public function toggleFeatured($intId, $blnVisible)
@@ -929,8 +929,8 @@ class tl_news extends Backend
 
 	/**
 	 * Disable/enable a user group
-	 * @param integer
-	 * @param boolean
+	 * @param int
+	 * @param bool
 	 */
 	public function toggleVisibility($intId, $blnVisible)
 	{

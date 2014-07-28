@@ -77,9 +77,9 @@ abstract class ModuleNews extends Module
 	/**
 	 * Parse an item and return it as string
 	 * @param object
-	 * @param boolean
+	 * @param bool
 	 * @param string
-	 * @param integer
+	 * @param int
 	 * @return string
 	 */
 	protected function parseArticle($objArticle, $blnAddArchive=false, $strClass='', $intCount=0)
@@ -198,7 +198,7 @@ abstract class ModuleNews extends Module
 	/**
 	 * Parse one or more items and return them as array
 	 * @param object
-	 * @param boolean
+	 * @param bool
 	 * @return array
 	 */
 	protected function parseArticles($objArticles, $blnAddArchive=false)
@@ -280,7 +280,7 @@ abstract class ModuleNews extends Module
 	/**
 	 * Generate a URL and return it as string
 	 * @param object
-	 * @param boolean
+	 * @param bool
 	 * @return string
 	 */
 	protected function generateNewsUrl($objItem, $blnAddArchive=false)
@@ -356,8 +356,8 @@ abstract class ModuleNews extends Module
 	 * Generate a link and return it as string
 	 * @param string
 	 * @param object
-	 * @param boolean
-	 * @param boolean
+	 * @param bool
+	 * @param bool
 	 * @return string
 	 */
 	protected function generateLink($strLink, $objArticle, $blnAddArchive=false, $blnIsReadMore=false)
