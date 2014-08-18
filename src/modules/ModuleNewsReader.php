@@ -12,8 +12,6 @@
 
 namespace Contao;
 
-use stdClass;
-
 
 /**
  * Class ModuleNewsReader
@@ -161,7 +159,7 @@ class ModuleNewsReader extends ModuleNews
 			}
 		}
 
-		$objConfig = new stdClass();
+		$objConfig = new \stdClass();
 
 		$objConfig->perPage = $objArchive->perPage;
 		$objConfig->order = $objArchive->sortOrder;
