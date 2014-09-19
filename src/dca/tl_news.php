@@ -282,7 +282,7 @@ $GLOBALS['TL_DCA']['tl_news'] =
 			'inputType'               => 'imageSize',
 			'options'                 => $GLOBALS['TL_CROP'],
 			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-			'eval'                    => ['rgxp'=>'digit', 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'],
+			'eval'                    => ['rgxp'=>'natural', 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'],
 			'sql'                     => "varchar(64) NOT NULL default ''"
 		],
 		'imagemargin' =>
