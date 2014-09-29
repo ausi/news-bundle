@@ -1,6 +1,6 @@
 {
 	"name": "contao/module-news",
-	"type": "contao-module",
+	"type": "library",
 	"description": "Contao 4 news module",
 	"license": "LGPL-3.0+",
 	"authors": [
