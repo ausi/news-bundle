@@ -1,0 +1,13 @@
+{
+    "require": [
+        "ContaoCoreBundle"
+    ],
+    "replace": [
+        "news"
+    ],
+    "bundles": {
+        "Contao\\Bundle\\NewsBundle\\ContaoNewsBundle": {
+            "environments": ["all"]
+        }
+    }
+}
