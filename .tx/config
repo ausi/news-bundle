@@ -27,11 +27,6 @@ source_file = src/languages/en/tl_news_archive.xlf
 source_lang = en
 file_filter = src/languages/<lang>/tl_news_archive.xlf
 
-[contao.v4_0-news-tl_news_comments]
-source_file = src/languages/en/tl_news_comments.xlf
-source_lang = en
-file_filter = src/languages/<lang>/tl_news_comments.xlf
-
 [contao.v4_0-news-tl_news_feed]
 source_file = src/languages/en/tl_news_feed.xlf
 source_lang = en
