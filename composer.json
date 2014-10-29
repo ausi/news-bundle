@@ -17,12 +17,12 @@
 	},
 	"autoload": {
         "psr-4": {
-            "Contao\\Bundle\\NewsBundle\\": "src/"
+            "Contao\\NewsBundle\\": "src/"
         },
 		"classmap": [
-			"legacy/classes/",
-			"legacy/models/",
-			"legacy/modules/"
+			"contao/classes/",
+			"contao/models/",
+			"contao/modules/"
 		]
 	}
 }
