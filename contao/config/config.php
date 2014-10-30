@@ -19,6 +19,7 @@ array_insert($GLOBALS['BE_MOD']['content'], 1,
 	'news' =>
 	[
 		'tables'      => ['tl_news_archive', 'tl_news', 'tl_news_feed', 'tl_content'],
+		'icon'        => 'vendor/contao/module-news/contao/assets/icon.gif',
 		'table'       => ['TableWizard', 'importTable'],
 		'list'        => ['ListWizard', 'importList']
 	]
