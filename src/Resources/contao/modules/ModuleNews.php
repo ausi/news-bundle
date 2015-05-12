@@ -187,6 +187,8 @@ abstract class ModuleNews extends \Module
 			$this->addEnclosuresToTemplate($objTemplate, $objArticle->row());
 		}
 
+		// FIXME: trigger an event
+
 		// HOOK: add custom logic
 		if (isset($GLOBALS['TL_HOOKS']['parseArticles']) && is_array($GLOBALS['TL_HOOKS']['parseArticles']))
 		{

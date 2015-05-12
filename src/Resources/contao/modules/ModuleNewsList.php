@@ -159,6 +159,8 @@ class ModuleNewsList extends \ModuleNews
 	 */
 	protected function countItems($newsArchives, $blnFeatured)
 	{
+		// FIXME: trigger an event
+
 		// HOOK: add custom logic
 		if (isset($GLOBALS['TL_HOOKS']['newsListCountItems']) && is_array($GLOBALS['TL_HOOKS']['newsListCountItems']))
 		{
@@ -192,6 +194,8 @@ class ModuleNewsList extends \ModuleNews
 	 */
 	protected function fetchItems($newsArchives, $blnFeatured, $limit, $offset)
 	{
+		// FIXME: trigger an event
+
 		// HOOK: add custom logic
 		if (isset($GLOBALS['TL_HOOKS']['newsListFetchItems']) && is_array($GLOBALS['TL_HOOKS']['newsListFetchItems']))
 		{
